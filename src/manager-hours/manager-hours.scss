@@ -1,5 +1,23 @@
+$red : rgb(243, 68, 68);
+
 .icon {
+    position: relative;
+    border: rgba(255, 255, 255, 0.295) solid 4px;
+    border-radius: 20em;
+
     span {
-        font-size: 10em;
+        font-size: 12em;
+        cursor: pointer;
+    }
+}
+
+.food {
+    position: absolute;
+    right: 15px;
+    bottom: 0px;
+
+    span {
+        font-size: 2em;
+        color: $red;
     }
 }
