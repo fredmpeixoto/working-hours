@@ -6,26 +6,32 @@ class ManagerHours extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isToggleOn: true, iconPause: 'pause' };
-        this.handleClick = this.handleClick.bind(this);
-        this.showLunch = this.showLunch.bind(this);
+        this.state = { isToggleOn: true, iconWork: 'play_arrow', iconLunch: 'fastfood', textInfo: '' };
+        this.handleClickWork = this.handleClickWork.bind(this);
+        this.handleClickLunch = this.handleClickLunch.bind(this);
     }
 
-    handleClick() {
-        this.setState(state => ({ isToggleOn: !state.isToggleOn }));
+    handleClickWork() {
+        if (this.state.iconWork === 'local_dining') return;
+
+        let work = this.state.iconWork === 'play_arrow' ? 'pause' : 'play_arrow';
+
+        let _textInfo = this.state.iconWork === 'play_arrow' ? 'Working' : 'Paused';
+
+        this.setState(() => ({ iconWork: work, textInfo: _textInfo }));
     }
 
-    getIconStatus() {
-        return this.state.isToggleOn ? 'play_arrow' : this.state.iconPause;
+    handleClickLunch() {
+        let _lunch = this.state.iconLunch === 'fastfood' ? 'pause' : 'fastfood';
+
+        let _work = this.state.iconWork === 'local_dining' ? 'play_arrow' : 'local_dining';
+
+        let _textInfo = this.state.iconWork === 'local_dining' ? 'Paused' : 'Lunch Time';
+
+        this.setState(() => ({ iconLunch: _lunch, iconWork: _work, textInfo: _textInfo }));
     }
 
-    getIconLunch() {
-        return this.state.iconPause === 'fastfood' ? 'pause' : 'fastfood';
-    }
 
-    showLunch() {
-        this.setState((state) => ({ iconPause: this.state.iconPause === 'fastfood' ? 'pause' : 'fastfood' }))
-    }
 
     render() {
         return (
@@ -33,21 +39,23 @@ class ManagerHours extends React.Component {
 
                 <div className="icon">
 
-                    <Icon onClick={this.handleClick} >
-                        {this.getIconStatus()}
+                    <Icon onClick={this.handleClickWork} >
+                        {this.state.iconWork}
                     </Icon>
 
-                    <div className="food">
+                    <div className="lunch">
 
-                        <Icon onClick={this.showLunch}>
-                            {this.getIconLunch()}
+                        <Icon onClick={this.handleClickLunch}>
+                            {this.state.iconLunch}
                         </Icon>
 
                     </div>
 
                 </div>
 
-                <h1>  Ola cheguei </h1>
+                <h1>
+                    {this.state.textInfo}
+                </h1>
             </div>
         );
     }
