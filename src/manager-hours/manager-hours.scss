@@ -1,23 +1,49 @@
 $red : rgb(243, 68, 68);
 
-.icon {
-    position: relative;
-    border: rgba(255, 255, 255, 0.295) solid 4px;
-    border-radius: 20em;
+.default {
+    text-align: -webkit-center;
 
-    span {
-        font-size: 12em;
-        cursor: pointer;
+    p {
+        width: 150px;
     }
-}
 
-.lunch {
-    position: absolute;
-    right: 15px;
-    bottom: 0px;
+    .icon {
+        position: relative;
+        border: rgba(255, 255, 255, 0.295) solid 4px;
+        border-radius: 20em;
 
-    span {
-        font-size: 2em;
-        color: $red;
+        span {
+            padding: 12px;
+            font-size: 12em;
+            cursor: pointer;
+        }
+
+        .span-animate {
+            animation: in-out;
+            animation-duration: 4s;
+            animation-iteration-count: infinite;
+        }
+
+    }
+
+    @keyframes in-out {
+        50% {
+            font-size: 11.6em;
+        }
+
+        100% {
+            font-size: 12em;
+        }
+    }
+
+    .lunch {
+        position: absolute;
+        right: 15px;
+        bottom: 0px;
+
+        span {
+            font-size: 2em;
+            color: $red;
+        }
     }
 }

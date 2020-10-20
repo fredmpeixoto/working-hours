@@ -16,7 +16,7 @@ class ManagerHours extends React.Component {
 
         let work = this.state.iconWork === 'play_arrow' ? 'pause' : 'play_arrow';
 
-        let _textInfo = this.state.iconWork === 'play_arrow' ? 'Working' : 'Paused';
+        let _textInfo = this.state.iconWork === 'play_arrow' ? 'Working' : 'Paused..';
 
         this.setState(() => ({ iconWork: work, textInfo: _textInfo }));
     }
@@ -31,15 +31,23 @@ class ManagerHours extends React.Component {
         this.setState(() => ({ iconLunch: _lunch, iconWork: _work, textInfo: _textInfo }));
     }
 
+    getClassBreath() {
+        return this.state.iconWork === 'play_arrow' ? 'span-animate' : '';
+    }
+
+    showMessage() {
+        return this.state.iconWork === 'play_arrow' ? 'Take time to breath, Follow the circle.' : '';
+    }
+
 
 
     render() {
         return (
-            <div>
+            <div className="default">
 
                 <div className="icon">
 
-                    <Icon onClick={this.handleClickWork} >
+                    <Icon className={this.getClassBreath()} onClick={this.handleClickWork} >
                         {this.state.iconWork}
                     </Icon>
 
@@ -56,6 +64,11 @@ class ManagerHours extends React.Component {
                 <h1>
                     {this.state.textInfo}
                 </h1>
+                <p>
+                    <small>
+                        {this.showMessage()}
+                    </small>
+                </p>
             </div>
         );
     }
