@@ -5,13 +5,39 @@
       "name": "User N.",
       "hours": [
         {
-          "start": "",
-          "end": ""
+          "start": "8:49:24 PM",
+          "end": "8:49:29 PM",
+          "kindBreak": "work"
+        },
+        {
+          "start": "8:49:33 PM",
+          "end": "8:49:37 PM",
+          "kindBreak": "work"
+        },
+        {
+          "start": "8:49:37 PM",
+          "end": "8:49:45 PM",
+          "kindBreak": "lunch"
+        },
+        {
+          "start": "8:49:59 PM",
+          "end": "8:50:06 PM",
+          "kindBreak": "work"
+        },
+        {
+          "start": "8:50:10 PM",
+          "end": "8:50:15 PM",
+          "kindBreak": "work"
+        },
+        {
+          "start": "8:50:15 PM",
+          "end": "8:50:23 PM",
+          "kindBreak": "lunch"
         }
       ],
       "iconWork": "play_arrow",
       "iconLunch": "fastfood",
-      "textInfo": ""
+      "textInfo": "Paused"
     }
   ]
 }

@@ -21,6 +21,7 @@ class ManagerHours extends React.Component {
         };
 
         this.updateHours = this.updateHours.bind(this);
+        this.requestHours = this.requestHours.bind(this);
         this.getDataFromUser = this.getDataFromUser.bind(this);
 
         this.handleClickWork = this.handleClickWork.bind(this);
@@ -34,15 +35,55 @@ class ManagerHours extends React.Component {
 
     getDataFromUser() {
         var that = this;
+
         request.getDataByUser(1)
-            .then((res) => that.setState(() => ({ name: res.data.name })))
+            .then((res) => that.setState(() => ({ ...res.data })))
     }
 
-    updateHours(){
+    updateHours(kindBreak) {
+
+        var circlesComplete = this.state.hours.every(hour => (hour.start && hour.end));
+
+        const lastHourCircle = this.state.hours[this.state.hours.length - 1];
+
+        var notIsSomeKindBreak = false;
+
+        if (lastHourCircle)
+            notIsSomeKindBreak = (lastHourCircle.kindBreak !== kindBreak);
+
+        if (circlesComplete)
+            this.createNewCircle(kindBreak);
+        else if (notIsSomeKindBreak) {
+            this.setHoursStartOrEnd(lastHourCircle, lastHourCircle.kindBreak);
+            this.createNewCircle(kindBreak);
+        } else
+            this.setHoursStartOrEnd(lastHourCircle, kindBreak);
+
+
+        this.requestHours();
+    }
+
+    createNewCircle(kindBreak) {
+        this.state.hours.push({ start: '', end: '' });
+        this.setHoursStartOrEnd(this.state.hours[this.state.hours.length - 1], kindBreak);
+    }
+
+    requestHours() {
         request.updateWorkTime(1, this.state)
-        .then(res => console.log(res))
+            .then();
     }
 
+
+    setHoursStartOrEnd(hour, kindBreak) {
+
+        hour.kindBreak = kindBreak;
+
+        var startedCircleButNotEnd = (hour.start && !hour.end);
+
+        if (!hour.start) hour.start = new Date().toLocaleTimeString();
+
+        else if (startedCircleButNotEnd) hour.end = new Date().toLocaleTimeString();
+    }
 
     handleClickWork() {
         if (this.state.iconWork === 'local_dining') return;
@@ -51,10 +92,10 @@ class ManagerHours extends React.Component {
 
         let _textInfo = this.state.iconWork === 'play_arrow' ? 'Working' : 'Paused..';
 
-        this.setState(() => ({ iconWork: work, textInfo: _textInfo }));
-
-        this.updateHours();
-
+        this.setState(
+            () => ({ iconWork: work, textInfo: _textInfo }),
+            () => this.updateHours('work')
+        );
     }
 
     handleClickLunch() {
@@ -64,7 +105,10 @@ class ManagerHours extends React.Component {
 
         let _textInfo = this.state.iconWork === 'local_dining' ? 'Paused' : 'Lunch Time';
 
-        this.setState(() => ({ iconLunch: _lunch, iconWork: _work, textInfo: _textInfo }));
+        this.setState(
+            () => ({ iconLunch: _lunch, iconWork: _work, textInfo: _textInfo }),
+            () => this.updateHours('lunch')
+        );
     }
 
     getClassBreath() {
