@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "User N.",
+      "hours": [
+        {
+          "start": "",
+          "end": ""
+        }
+      ],
+      "iconWork": "play_arrow",
+      "iconLunch": "fastfood",
+      "textInfo": ""
+    }
+  ]
+}

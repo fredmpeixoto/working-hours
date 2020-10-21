@@ -1,15 +1,48 @@
 import React from 'react';
-import './manager-hours.scss';
 import Icon from '@material-ui/core/Icon';
+
+import './manager-hours.scss';
+import RequestService from '../services/request.services';
+
+const request = new RequestService();
 
 class ManagerHours extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isToggleOn: true, iconWork: 'play_arrow', iconLunch: 'fastfood', textInfo: '' };
+        this.state = {
+            iconWork: 'play_arrow',
+            iconLunch: 'fastfood',
+            textInfo: '', name: '',
+            hours: [{
+                start: '',
+                end: ''
+            }]
+        };
+
+        this.updateHours = this.updateHours.bind(this);
+        this.getDataFromUser = this.getDataFromUser.bind(this);
+
         this.handleClickWork = this.handleClickWork.bind(this);
         this.handleClickLunch = this.handleClickLunch.bind(this);
     }
+
+
+    componentDidMount() {
+        this.getDataFromUser();
+    }
+
+    getDataFromUser() {
+        var that = this;
+        request.getDataByUser(1)
+            .then((res) => that.setState(() => ({ name: res.data.name })))
+    }
+
+    updateHours(){
+        request.updateWorkTime(1, this.state)
+        .then(res => console.log(res))
+    }
+
 
     handleClickWork() {
         if (this.state.iconWork === 'local_dining') return;
@@ -19,6 +52,9 @@ class ManagerHours extends React.Component {
         let _textInfo = this.state.iconWork === 'play_arrow' ? 'Working' : 'Paused..';
 
         this.setState(() => ({ iconWork: work, textInfo: _textInfo }));
+
+        this.updateHours();
+
     }
 
     handleClickLunch() {
@@ -45,7 +81,10 @@ class ManagerHours extends React.Component {
         return (
             <div className="default">
 
+                <p>Hello {this.state.name}</p>
+
                 <div className="icon">
+
 
                     <Icon className={this.getClassBreath()} onClick={this.handleClickWork} >
                         {this.state.iconWork}
@@ -61,9 +100,9 @@ class ManagerHours extends React.Component {
 
                 </div>
 
-                <h1>
+                <h3>
                     {this.state.textInfo}
-                </h1>
+                </h3>
                 <p>
                     <small>
                         {this.showMessage()}
