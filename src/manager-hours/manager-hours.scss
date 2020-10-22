@@ -2,12 +2,16 @@ $red : rgb(243, 68, 68);
 
 .default {
     text-align: -webkit-center;
+    width: 100vw;
+
 
     p {
         width: 150px;
     }
 
     .icon {
+        width: 13em;
+        height: 13em;
         position: relative;
         border: rgba(255, 255, 255, 0.295) solid 4px;
         border-radius: 20em;
@@ -45,5 +49,27 @@ $red : rgb(243, 68, 68);
             font-size: 2em;
             color: $red;
         }
+    }
+}
+
+
+.hidden {
+    display: none;
+}
+
+.table-style {
+    margin: 10px auto;
+    width: 90% !important;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.info-hours {
+    ul {
+        text-align: initial;
+        font-size: 12px;
+        list-style-type: none;
     }
 }
