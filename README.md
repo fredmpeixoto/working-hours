@@ -23,8 +23,8 @@ Request to [http://localhost:3001](http://localhost:3001) .
 
 ### `How can I improve that?` 
 
-Add redux to improve change state.
-Split component principal in 3 differents components.
+Add redux to improve change state..<br />
+Split component principal in 3 differents components..<br />
 Improve clean code.
 
 
