@@ -21,6 +21,14 @@ Request to [http://localhost:3001](http://localhost:3001) .
 
 ![alt text](src/assets/img/system.PNG "System")
 
+### `How can I improve that?` 
+
+Add redux to improve change state.
+Split component principal in 3 differents components.
+Improve clean code.
+
+
+
 
 
 
