@@ -5,119 +5,23 @@
       "name": "User N.",
       "hours": [
         {
-          "start": "10/22/2020, 12:14:24 PM",
-          "end": "10/22/2020, 12:14:26 PM",
-          "kindBreak": "work",
-          "total": 2
-        },
-        {
-          "start": "10/22/2020, 12:14:28 PM",
-          "end": "10/22/2020, 12:14:29 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:14:30 PM",
-          "end": "10/22/2020, 12:14:31 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:14:54 PM",
-          "end": "10/22/2020, 12:14:55 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:14:56 PM",
-          "end": "10/22/2020, 12:14:57 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:14:57 PM",
-          "end": "10/22/2020, 12:15:00 PM",
-          "kindBreak": "work",
-          "total": 3
-        },
-        {
-          "start": "10/22/2020, 12:15:14 PM",
-          "end": "10/22/2020, 12:15:15 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:15:16 PM",
-          "end": "10/22/2020, 12:15:17 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:46:53 PM",
-          "end": "10/22/2020, 12:46:54 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:46:55 PM",
-          "end": "10/22/2020, 12:46:57 PM",
-          "kindBreak": "work",
-          "total": 2
-        },
-        {
-          "start": "10/22/2020, 12:46:57 PM",
-          "end": "10/22/2020, 12:46:58 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:46:59 PM",
-          "end": "10/22/2020, 12:47:00 PM",
-          "kindBreak": "work",
-          "total": 1
-        },
-        {
-          "start": "10/22/2020, 12:47:10 PM",
-          "end": "10/22/2020, 12:47:14 PM",
-          "kindBreak": "work",
-          "total": 4
-        },
-        {
-          "start": "10/22/2020, 12:47:30 PM",
-          "end": "10/22/2020, 12:47:40 PM",
+          "start": "10/22/2020, 5:39:27 PM",
+          "end": "10/22/2020, 5:39:37 PM",
           "kindBreak": "work",
           "total": 10
         },
         {
-          "start": "10/22/2020, 12:47:42 PM",
-          "end": "10/22/2020, 12:47:46 PM",
-          "kindBreak": "work",
-          "total": 4
-        },
-        {
-          "start": "10/22/2020, 12:47:53 PM",
-          "end": "10/22/2020, 12:47:55 PM",
-          "kindBreak": "work",
-          "total": 2
-        },
-        {
-          "start": "10/22/2020, 12:56:02 PM",
-          "end": "10/22/2020, 12:57:46 PM",
-          "kindBreak": "work",
-          "total": 104
-        },
-        {
-          "start": "10/22/2020, 12:57:47 PM",
-          "end": "10/22/2020, 12:57:52 PM",
-          "kindBreak": "work",
-          "total": 5
+          "start": "10/22/2020, 5:39:37 PM",
+          "end": "",
+          "kindBreak": "lunch"
         }
       ],
-      "iconWork": "play_arrow",
-      "iconLunch": "fastfood",
-      "textInfo": "Paused..",
-      "showTable": true,
-      "sumTotalSegWorking": "00:02:20"
+      "iconWork": "local_dining",
+      "iconLunch": "pause",
+      "textInfo": "Lunch Time",
+      "showTable": false,
+      "sumTotalSegWorking": "",
+      "sumTotalLunch": ""
     }
   ]
 }

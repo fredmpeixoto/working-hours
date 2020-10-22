@@ -5,12 +5,12 @@ import Icon from '@material-ui/core/Icon';
 import Divider from "@material-ui/core/Divider";
 
 import Table from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
+import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
 
 import './manager-hours.scss';
 import RequestService from '../services/request.services';
@@ -26,6 +26,7 @@ class ManagerHours extends React.Component {
             iconLunch: 'fastfood',
             textInfo: '', name: '',
             sumTotalSegWorking: '',
+            sumTotalLunch: '',
             hours: [{
                 start: '',
                 end: '',
@@ -41,7 +42,7 @@ class ManagerHours extends React.Component {
         this.onToggleTable = this.onToggleTable.bind(this);
         this.handleClickWork = this.handleClickWork.bind(this);
         this.handleClickLunch = this.handleClickLunch.bind(this);
-        this.setTotalHoursWork = this.setTotalHoursWork.bind(this);
+        this.setTotalHoursInSeg = this.setTotalHoursInSeg.bind(this);
     }
 
     componentDidMount() {
@@ -76,7 +77,9 @@ class ManagerHours extends React.Component {
         } else
             this.setHoursStartOrEnd(lastHourCycle, kindBreak);
 
-        this.setTotalHoursWork();
+        let current = (kindBreak === 'work' ? this.state.sumTotalSegWorking: this.state.sumTotalLunch);
+        
+        this.setTotalHoursInSeg(kindBreak, current);
 
         this.requestHours();
     }
@@ -90,7 +93,6 @@ class ManagerHours extends React.Component {
         request.updateWorkTime(1, this.state)
             .then();
     }
-
 
     setHoursStartOrEnd(hour, kindBreak) {
 
@@ -144,20 +146,23 @@ class ManagerHours extends React.Component {
         this.setState((state) => ({ showTable: !state.showTable }));
     }
 
-    setTotalHoursWork() {
-        let timesWorking = this.state.hours.filter(hr => hr.kindBreak === 'work');
+    setTotalHoursInSeg(kind, currentTotal) {
+        let times = this.state.hours.filter(hr => hr.kindBreak === kind);
 
-        if (timesWorking.length === 0) return;
+        if (times.length === 0) return;
 
-        const sumTotalSegWorking = timesWorking.reduce((accumulator, time) => accumulator + time.total, 0);
+        const sumTotalSeg = times.reduce((accumulator, time) => accumulator + time.total, 0);
 
-        var formatted = moment.utc(sumTotalSegWorking * 1000).format('HH:mm:ss');
+        var formatted = moment.utc(sumTotalSeg * 1000).format('HH:mm:ss');
 
-        formatted = formatted === 'Invalid date' ? this.state.sumTotalSegWorking : formatted; 
+        formatted = formatted === 'Invalid date' ? currentTotal : formatted;
 
-        this.setState(() => ({ sumTotalSegWorking: formatted }));
+        if (kind === 'work')
+            this.setState(() => ({ sumTotalSegWorking: formatted }));
+        else
+            this.setState(() => ({ sumTotalLunch: formatted }));
+
     }
-
 
 
     render() {
@@ -169,7 +174,6 @@ class ManagerHours extends React.Component {
                     <p>Hello {this.state.name}</p>
 
                     <div className="icon">
-
 
                         <Icon className={this.getClassBreath()} onClick={this.handleClickWork} >
                             {this.state.iconWork}
@@ -205,20 +209,19 @@ class ManagerHours extends React.Component {
                         </li>
 
                         <li>
-                            Last Exiting : {this.state.hours[this.state.hours.length - 1]?.end}
+                            Last Exiting : {this.state.hours[this.state.hours.length - 1]?.end || 0}
                         </li>
 
                         <li>
-                            Stop To Lunch : {this.state.hours[this.state.hours.length - 1]?.end}
+                            Total To Lunch : {this.state?.sumTotalLunch || 0}
                         </li>
 
                         <li>
-                            Total Work : {this.state.sumTotalSegWorking || 0}
+                            Total Worked : {this.state?.sumTotalSegWorking || 0}
                         </li>
                     </ul>
 
                 </div>
-
 
                 <Divider />
 

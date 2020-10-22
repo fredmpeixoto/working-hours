@@ -4,11 +4,6 @@ $red : rgb(243, 68, 68);
     text-align: -webkit-center;
     width: 100vw;
 
-
-    p {
-        width: 150px;
-    }
-
     .icon {
         width: 13em;
         height: 13em;
@@ -48,6 +43,9 @@ $red : rgb(243, 68, 68);
         span {
             font-size: 2em;
             color: $red;
+            border: 1px solid;
+            border-radius: 1em;
+            background-color: #fff;
         }
     }
 }
