@@ -19,7 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Runs the database in fake API.<br />
 Request to [http://localhost:3001](http://localhost:3001) .
 
-![alt text](src/img/system.PNG "System")
+![alt text](src/assets/img/system.PNG "System")
 
 
 
