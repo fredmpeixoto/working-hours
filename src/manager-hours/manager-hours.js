@@ -36,7 +36,7 @@ class ManagerHours extends React.Component {
         };
 
         this.updateHours = this.updateHours.bind(this);
-        this.requestHours = this.requestHours.bind(this);
+        this.requestUpdateHours = this.requestUpdateHours.bind(this);
         this.getDataFromUser = this.getDataFromUser.bind(this);
 
         this.onToggleTable = this.onToggleTable.bind(this);
@@ -60,41 +60,42 @@ class ManagerHours extends React.Component {
 
         let cyclesComplete = true;
 
-        let notIsSomeKindBreak = false;
+        let notIsSameKindBreak = false;
 
-        const lastHourCycle = this.state.hours[this.state.hours.length - 1];
+        const lastHoursCycle = this.state.hours[this.state.hours.length - 1];
 
-        if (lastHourCycle) {
-            cyclesComplete = (lastHourCycle.start && lastHourCycle.end);
-            notIsSomeKindBreak = (lastHourCycle.kindBreak !== kindBreak);
+        if (lastHoursCycle) {
+            cyclesComplete = (lastHoursCycle.start && lastHoursCycle.end);
+            notIsSameKindBreak = (lastHoursCycle.kindBreak !== kindBreak);
         }
 
         if (cyclesComplete)
             this.createNewCycle(kindBreak);
-        else if (notIsSomeKindBreak) {
-            this.setHoursStartOrEnd(lastHourCycle, lastHourCycle.kindBreak);
+        else if (notIsSameKindBreak) {
+            this.setFillHoursStartOrEnd(lastHoursCycle, lastHoursCycle.kindBreak);
             this.createNewCycle(kindBreak);
+            this.setTotalHoursInSeg(lastHoursCycle.kindBreak, this.state.sumTotalSegWorking);
         } else
-            this.setHoursStartOrEnd(lastHourCycle, kindBreak);
+            this.setFillHoursStartOrEnd(lastHoursCycle, kindBreak);
 
         let current = (kindBreak === 'work' ? this.state.sumTotalSegWorking: this.state.sumTotalLunch);
         
         this.setTotalHoursInSeg(kindBreak, current);
 
-        this.requestHours();
+        this.requestUpdateHours();
     }
 
     createNewCycle(kindBreak) {
         this.state.hours.push({ start: '', end: '' });
-        this.setHoursStartOrEnd(this.state.hours[this.state.hours.length - 1], kindBreak);
+        this.setFillHoursStartOrEnd(this.state.hours[this.state.hours.length - 1], kindBreak);
     }
 
-    requestHours() {
+    requestUpdateHours() {
         request.updateWorkTime(1, this.state)
             .then();
     }
 
-    setHoursStartOrEnd(hour, kindBreak) {
+    setFillHoursStartOrEnd(hour, kindBreak) {
 
         hour.kindBreak = kindBreak;
 
@@ -213,7 +214,7 @@ class ManagerHours extends React.Component {
                         </li>
 
                         <li>
-                            Total To Lunch : {this.state?.sumTotalLunch || 0}
+                            Total Lunch Time: {this.state?.sumTotalLunch || 0}
                         </li>
 
                         <li>
